@@ -1,0 +1,13 @@
+04-11 13:11:08 [pool-1-thread-1] INFO  com.tone.gf.work.BuySellWork - sell code = 000776, price = 17.18, amount = 10
+04-11 13:11:08 [pool-1-thread-3] INFO  com.tone.gf.work.BuySellWork - sell code = 000776, price = 17.48, amount = 10
+04-11 13:11:08 [pool-1-thread-2] INFO  com.tone.gf.work.BuySellWork - buy code = 000776, price = 16.88, amount = 10
+04-11 13:11:09 [pool-1-thread-1] INFO  com.tone.gf.work.BuySellWork - buy code = 000776, price = 16.58, amount = 10
+04-11 13:11:09 [pool-1-thread-3] INFO  com.tone.gf.work.BuySellWork - sell code = 000776, price = 17.18, amount = 10
+04-11 13:11:09 [pool-1-thread-2] INFO  com.tone.gf.work.BuySellWork - sell code = 000776, price = 16.88, amount = 10
+04-11 13:11:09 [pool-1-thread-1] INFO  com.tone.gf.work.BuySellWork - buy code = 000776, price = 16.28, amount = 10
+04-11 13:11:09 [pool-1-thread-3] INFO  com.tone.gf.work.BuySellWork - buy code = 000776, price = 16.88, amount = 10
+04-11 13:11:09 [pool-1-thread-2] INFO  com.tone.gf.work.BuySellWork - sell code = 000776, price = 17.18, amount = 10
+04-11 13:11:09 [pool-1-thread-1] INFO  com.tone.gf.work.BuySellWork - buy code = 000776, price = 16.58, amount = 10
+04-11 13:11:09 [pool-1-thread-3] INFO  com.tone.gf.work.BuySellWork - buy code = 000776, price = 16.88, amount = 10
+04-11 13:11:09 [pool-1-thread-2] INFO  com.tone.gf.work.BuySellWork - sell code = 000776, price = 17.78, amount = 10
+04-11 13:11:09 [pool-1-thread-1] INFO  com.tone.gf.work.BuySellWork - buy code = 000776, price = 17.18, amount = 10

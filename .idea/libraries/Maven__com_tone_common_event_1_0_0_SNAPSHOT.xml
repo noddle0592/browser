@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.tone:common-event:1.0.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/tone/common-event/1.0.0-SNAPSHOT/common-event-1.0.0-20170823.102852-9.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/tone/common-event/1.0.0-SNAPSHOT/common-event-1.0.0-20170823.102852-9-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/tone/common-event/1.0.0-SNAPSHOT/common-event-1.0.0-20170823.102852-9-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
