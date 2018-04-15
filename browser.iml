@@ -14,6 +14,7 @@
     <orderEntry type="library" name="Maven: com.teamdev:jxbrowser:6.19.1" level="project" />
     <orderEntry type="library" name="Maven: com.teamdev:jxbrowser-mac:6.19.1" level="project" />
     <orderEntry type="library" name="Maven: com.teamdev:jxbrowser-win32:6.19.1" level="project" />
+    <orderEntry type="library" name="Maven: com.teamdev:jxbrowser-linux64:6.19.1" level="project" />
     <orderEntry type="library" name="Maven: com.tone:common-event:1.0.0-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.6" level="project" />
     <orderEntry type="library" name="Maven: ch.qos.logback:logback-classic:1.1.2" level="project" />

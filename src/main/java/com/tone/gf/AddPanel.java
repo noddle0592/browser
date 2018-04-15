@@ -8,6 +8,7 @@ import com.tone.gf.strategy.model.ModelT0;
 import com.tone.gf.strategy.model.ModelT1;
 import com.tone.gf.strategy.ui.UIT0;
 import com.tone.gf.strategy.ui.UIT1;
+import com.tone.gf.work.LoginWork;
 import com.tone.gf.work.PriceWork;
 
 import javax.swing.*;
@@ -18,6 +19,7 @@ import java.util.concurrent.Executors;
 
 public class AddPanel extends JPanel {
     private ModelTable modelTable;
+    private final JButton btnAdd;
     private final JButton btnStart;
     private final JTextField txtCode;
     private final JComboBox<Strategy> cbxStrategy;
@@ -29,10 +31,11 @@ public class AddPanel extends JPanel {
         uit0 = new UIT0();
         uit1 = new UIT1();
         JPanel strategyUI = new JPanel();
-        strategyUI.add(uit0, BorderLayout.CENTER);
+        strategyUI.add(uit1, BorderLayout.CENTER);
 
         JLabel lblStrategy = new JLabel("策略：");
         cbxStrategy = new JComboBox<>(Strategy.values());
+        cbxStrategy.setSelectedIndex(Strategy.T1.ordinal());
         cbxStrategy.addItemListener(e -> {
             if (e.getStateChange() == ItemEvent.SELECTED) {
                 switch ((Strategy)cbxStrategy.getSelectedItem()) {
@@ -68,7 +71,8 @@ public class AddPanel extends JPanel {
 
         this.add(strategyUI, BorderLayout.LINE_END);
 
-        JButton btnAdd = new JButton("添加");
+        btnAdd = new JButton("添加");
+        btnAdd.setEnabled(false);
         btnAdd.addActionListener(e -> {
             Model model = null;
             switch ((Strategy)cbxStrategy.getSelectedItem()) {
@@ -86,9 +90,11 @@ public class AddPanel extends JPanel {
 
         JButton btnTest = new JButton("测试");
         btnTest.addActionListener(e -> {
-            String code = txtCode.getText();
-            double price = uit1.getModel().getPrice();
-            AppInfo.PRICES.put(code, price);
+//            String code = txtCode.getText();
+//            double price = uit1.getModel().getPrice();
+//            AppInfo.PRICES.put(code, price);
+//            AppInfo.CLOSE_PRICES.put(code, price);
+            new LoginWork().run();
         });
         this.add(btnTest, BorderLayout.LINE_END);
 
@@ -123,8 +129,8 @@ public class AddPanel extends JPanel {
         this.add(btnStop, BorderLayout.LINE_END);
     }
 
-    public void setStartEnable() {
-        btnStart.setEnabled(true);
+    public void setAddEnable() {
+        btnAdd.setEnabled(true);
     }
 
     public void setModelTable(ModelTable modelTable) {

@@ -4,9 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 
 public class SettingPanel extends JPanel {
+    private final AddPanel addPanel;
+
     public SettingPanel() {
         super(new GridLayout(2, 1));
-        AddPanel addPanel = new AddPanel();
+        addPanel = new AddPanel();
 
         this.add(addPanel);
         ModelTable modelTable = new ModelTable();
@@ -16,5 +18,11 @@ public class SettingPanel extends JPanel {
 
         addPanel.setModelTable(modelTable);
         modelTable.setAddPanel(addPanel);
+
+        AppInfo.MODEL_TABLE = modelTable;
+    }
+
+    public void setButtonEnable() {
+        addPanel.setAddEnable();
     }
 }

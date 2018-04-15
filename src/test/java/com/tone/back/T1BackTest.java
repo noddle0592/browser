@@ -18,9 +18,10 @@ import java.io.Reader;
  * 注意：1. 测试时，关闭T1策略的while START判断，以及sleep设置
  */
 public class T1BackTest {
-    private final String code = "000776";
+//    private final String code = "000776";
 //    private final String code = "600297";
-    private final double floatPrice = 0.3;
+    private final String code = "002590";
+    private final double floatPrice = 0.1;
     private final int amount = 10;
     private BackConsume backConsume;
 
@@ -88,7 +89,8 @@ public class T1BackTest {
                 String.format("/Users/Dongsys/Downloads/2017-01/%s_2017-01-25.csv", code),
                 String.format("/Users/Dongsys/Downloads/2017-01/%s_2017-01-26.csv", code)
         };
-        final double closePrice = 16.88;
+//        final double closePrice = 16.88;
+        final double closePrice = 20.42;
         AppInfo.CLOSE_PRICES.put(code, closePrice);
         this.backTest(closePrice, fileNames);
     }
@@ -235,7 +237,7 @@ public class T1BackTest {
                 String.format("/Users/Dongsys/Downloads/2017-04/%s_2017-04-21.csv", code),
                 String.format("/Users/Dongsys/Downloads/2017-04/%s_2017-04-24.csv", code)
         };
-        final double closePrice = 17.58;
+        final double closePrice = 19.4;
         AppInfo.CLOSE_PRICES.put(code, closePrice);
         this.backTest(closePrice, fileNames);
     }

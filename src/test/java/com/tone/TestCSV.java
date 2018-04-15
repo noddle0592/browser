@@ -22,7 +22,7 @@ public class TestCSV {
 
     @Test
     public void readCsv2() throws IOException {
-        final Reader reader = new FileReader("/Users/Dongsys/Downloads/2017-01/000776_2017-01-03.csv");
+        final Reader reader = new FileReader("/Users/Dongsys/Downloads/2017-01/002590_2017-01-26.csv");
         final CSVParser parser = new CSVParser(reader, CSVFormat.EXCEL.withHeader());
         try {
             for (final CSVRecord record : parser) {

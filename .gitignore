@@ -28,3 +28,6 @@ test/
 # system ignore
 .DS_Store
 Thumbs.db
+
+# properties
+*.properties

@@ -7,6 +7,7 @@ import com.teamdev.jxbrowser.chromium.events.LoadAdapter;
 import com.teamdev.jxbrowser.chromium.swing.BrowserView;
 import com.teamdev.jxbrowser.chromium.az;
 import com.tone.gf.event.EventConsume;
+import com.tone.gf.util.PropertyUtil;
 
 import javax.swing.*;
 import java.awt.*;
@@ -57,7 +58,7 @@ public class GFMainFrame {
             if (event.isMainFrame()) {
                 DOMDocument document = event.getBrowser().getDocument();
                 AppInfo.DOCUMENT = document;
-//                addPanel.setStartEnable();
+                settingPanel.setButtonEnable();
 
 //                DOMElement link = DOCUMENT.findElement(By.id("link"));
 //                if (link != null) {
@@ -69,8 +70,10 @@ public class GFMainFrame {
             }
             }
         });
-//        browser.loadURL("http://hippo.gf.com.cn");
+        browser.loadURL("http://hippo.gf.com.cn");
         AppInfo.BROWSER = browser;
         new EventConsume();
+
+        System.out.println(PropertyUtil.getProperty("user") + ", " + PropertyUtil.getProperty("password"));
     }
 }

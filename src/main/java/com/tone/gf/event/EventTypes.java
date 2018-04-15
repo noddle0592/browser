@@ -13,11 +13,11 @@ public interface EventTypes {
      */
     EventType SELL = new ByteEventType((byte)1);
     /**
-     * 买入日志记录事件
+     * 可用持仓变动
      */
-    EventType BUY_LOG = new ByteEventType((byte)2);
+    EventType AVAILABLE_CHANGE = new ByteEventType((byte)2);
     /**
-     * 卖出日志记录事件
+     * 总持仓变动
      */
-    EventType SELL_LOG = new ByteEventType((byte)3);
+    EventType POSITION_CHANGE = new ByteEventType((byte)3);
 }

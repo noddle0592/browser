@@ -33,6 +33,6 @@ public class ModelT0 extends Model {
     }
 
     public Object[] toArray() {
-        return new Object[]{strategy, code, price, floatPrice, 0, 0};
+        return new Object[]{strategy, code, price, floatPrice, 0, getAvailable(), getPosition(), 0, 0};
     }
 }

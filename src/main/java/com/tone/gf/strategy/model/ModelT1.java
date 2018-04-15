@@ -41,6 +41,6 @@ public class ModelT1 extends Model {
 
     @Override
     public Object[] toArray() {
-        return new Object[]{strategy, code, price, floatPrice, amount, 0};
+        return new Object[]{strategy, code, price, floatPrice, amount, getAvailable(), getPosition(), 0, 0};
     }
 }

@@ -25,6 +25,11 @@
             <version>6.19.1</version>
         </dependency>
         <dependency>
+            <groupId>com.teamdev</groupId>
+            <artifactId>jxbrowser-linux64</artifactId>
+            <version>6.19.1</version>
+        </dependency>
+        <dependency>
             <groupId>com.tone</groupId>
             <artifactId>common-event</artifactId>
             <version>1.0.0-SNAPSHOT</version>

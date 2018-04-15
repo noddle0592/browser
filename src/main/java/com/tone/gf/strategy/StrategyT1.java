@@ -35,7 +35,7 @@ public class StrategyT1 implements Runnable {
         try {
             int count = 0;
             double closePrice = AppInfo.CLOSE_PRICES.get(model.getCode());
-//            while (AppInfo.START) {
+            while (AppInfo.START) {
                 // 获取价格
                 double gradient = model.getGradient();
                 double curPrice = AppInfo.PRICES.get(model.getCode());
@@ -94,8 +94,8 @@ public class StrategyT1 implements Runnable {
                         }
                     }
                 }
-//                Thread.sleep(AppInfo.SLEEP_TIME);
-//            }
+                Thread.sleep(AppInfo.SLEEP_TIME);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

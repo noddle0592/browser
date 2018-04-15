@@ -33,7 +33,7 @@ public class AppInfo {
      */
     public static DOMDocument DOCUMENT;
     /**
-     * 股代码和股对象映射关系
+     * 股文档对象
      */
     public static Map<String, DOMElement> STOCK_DOCUMENT;
     /**
@@ -44,4 +44,21 @@ public class AppInfo {
      * 昨收价格
      */
     public static Map<String, Double> CLOSE_PRICES = new HashMap<>();
+    /**
+     * 股持仓对象
+     */
+    public static Map<String, DOMElement> POSITION_DOCUMENT = new HashMap<>();
+    /**
+     * 持仓情况，当前可用
+     */
+    public static Map<String, Integer> AVAILABLES = new HashMap<>();
+    /**
+     * 持仓情况，所有可用
+     */
+    public static Map<String, Integer> POSITIONS = new HashMap<>();
+
+    /**
+     * 用于更新表内UI的表模型对象
+     */
+    public static ModelTable MODEL_TABLE;
 }
