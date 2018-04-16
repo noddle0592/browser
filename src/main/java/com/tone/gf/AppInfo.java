@@ -3,6 +3,7 @@ package com.tone.gf;
 import com.teamdev.jxbrowser.chromium.Browser;
 import com.teamdev.jxbrowser.chromium.dom.DOMDocument;
 import com.teamdev.jxbrowser.chromium.dom.DOMElement;
+import com.tone.gf.work.AddCheckWork;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,10 +29,6 @@ public class AppInfo {
      * 浏览器
      */
     public static Browser BROWSER;
-    /**
-     * 文档根
-     */
-    public static DOMDocument DOCUMENT;
     /**
      * 股文档对象
      */
@@ -61,4 +58,6 @@ public class AppInfo {
      * 用于更新表内UI的表模型对象
      */
     public static ModelTable MODEL_TABLE;
+
+    public static AddCheckWork ADD_CHECK;
 }

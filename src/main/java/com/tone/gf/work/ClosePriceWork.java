@@ -9,6 +9,5 @@ public class ClosePriceWork implements Runnable {
         AppInfo.STOCK_DOCUMENT.forEach((key, value) -> {
             AppInfo.CLOSE_PRICES.put(key, Double.parseDouble(value.findElement(By.className("closeprice")).getInnerText()));
         });
-        System.out.println(AppInfo.CLOSE_PRICES);
     }
 }

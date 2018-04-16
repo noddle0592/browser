@@ -44,7 +44,7 @@ public class ModelTable extends JTable {
             models.set(index, model);
             Object[] values = model.toArray();
             for (int i = 0; i < values.length; i++) {
-                tableModel.setValueAt(values[i], index, i);
+                tableModel.setValueAt(values[i], index + 1, i);
             }
         }
     }
@@ -66,7 +66,21 @@ public class ModelTable extends JTable {
             }
         }
         if (index >= 0) {
-            tableModel.setValueAt(value, index, column);
+            if (column >= TableColumns.BUY) {
+                Model model = models.get(index);
+                switch (column) {
+                    case TableColumns.BUY:
+                        model.addBuy((int) value);
+                        value = model.getBuy();
+                        break;
+                    case TableColumns.SELL:
+                        model.addSell((int) value);
+                        value = model.getSell();
+                        break;
+                }
+                models.set(index, model);
+            }
+            tableModel.setValueAt(value, index + 1, column);
         }
     }
 }

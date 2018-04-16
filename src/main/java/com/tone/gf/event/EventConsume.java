@@ -34,6 +34,7 @@ public class EventConsume {
         eventContext.addListener(new AbstractSmartListener<AvailableEvent>(EventTypes.AVAILABLE_CHANGE) {
             @Override
             public void onEvent(AvailableEvent event) throws Exception {
+                new AvailableChangeWork(event.getSource().getCode(), event.getSource().getPosition()).run();
                 int diff = event.getSource().getNewPosition() - event.getSource().getPosition();
                 rightCornerPopMessage.showPopMessage("可用持仓", String.format(PopMessages.POSITION, "可用",
                         diff > 0 ? "red" : "green", diff > 0 ? "增加" : "减少", Math.abs(diff)));
@@ -42,6 +43,8 @@ public class EventConsume {
         eventContext.addListener(new AbstractSmartListener<PositionEvent>(EventTypes.POSITION_CHANGE) {
             @Override
             public void onEvent(PositionEvent event) throws Exception {
+                new PositionChangeWork(event.getSource().getCode(), event.getSource().getPosition(),
+                        event.getSource().getNewPosition()).run();
                 int diff = event.getSource().getNewPosition() - event.getSource().getPosition();
                 rightCornerPopMessage.showPopMessage("总持仓", String.format(PopMessages.POSITION, "总",
                         diff > 0 ? "red" : "green", diff > 0 ? "增加" : "减少", Math.abs(diff)));

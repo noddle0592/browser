@@ -10,7 +10,7 @@ import com.tone.gf.AppInfo;
 public class OrderCancelWork implements Runnable {
     @Override
     public void run() {
-        DOMElement domElement = AppInfo.DOCUMENT.findElement(By.className("AppBar-StockTrade"));
+        DOMElement domElement = AppInfo.BROWSER.getDocument().findElement(By.className("AppBar-StockTrade"));
         domElement.click();
         DOMElement domElementTabsContent = AppInfo.BROWSER.getDocument().findElement(By.className("Tabs-Content"));
         DOMElement domElementOrderCancel = domElementTabsContent.findElement(By.className("Tabs-Bar-Item Tab-1"));

@@ -12,7 +12,7 @@ import java.util.List;
 public class PositionWork implements Runnable {
     @Override
     public void run() {
-        DOMElement domElement = AppInfo.DOCUMENT.findElement(By.className("AppBar-StockTrade"));
+        DOMElement domElement = AppInfo.BROWSER.getDocument().findElement(By.className("AppBar-StockTrade"));
         domElement.click();
         DOMElement domElementTabsContent = AppInfo.BROWSER.getDocument().findElement(By.className("Tabs-Content"));
         DOMElement domElementPosition = domElementTabsContent.findElement(By.className("Tabs-Bar-Item Tab-2"));

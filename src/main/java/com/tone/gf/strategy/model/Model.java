@@ -12,6 +12,8 @@ public abstract class Model {
      * 股票代码
      */
     protected String code;
+    protected int buy;
+    protected int sell;
 
     public Model(Strategy strategy) {
         this.strategy = strategy;
@@ -29,6 +31,22 @@ public abstract class Model {
         this.code = code;
     }
 
+    public int getBuy() {
+        return buy;
+    }
+
+    public void addBuy(int buy) {
+        this.buy = this.buy + buy;
+    }
+
+    public int getSell() {
+        return sell;
+    }
+
+    public void addSell(int sell) {
+        this.sell = this.sell + sell;
+    }
+
     public abstract Object[] toArray();
 
     /**
@@ -36,7 +54,7 @@ public abstract class Model {
      * @return 可用持仓数
      */
     protected int getAvailable() {
-        return AppInfo.AVAILABLES.get(code);
+        return AppInfo.AVAILABLES.get(code) != null ? AppInfo.AVAILABLES.get(code) : 0;
     }
 
     /**
@@ -44,7 +62,7 @@ public abstract class Model {
      * @return 总持仓数
      */
     protected int getPosition() {
-        return AppInfo.POSITIONS.get(code);
+        return AppInfo.POSITIONS.get(code) != null ? AppInfo.POSITIONS.get(code) : 0;
     }
 
     @Override

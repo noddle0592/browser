@@ -1,5 +1,6 @@
 package com.tone.gf;
 
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.Appinfo;
 import com.tone.gf.strategy.Strategy;
 import com.tone.gf.strategy.StrategyT0;
 import com.tone.gf.strategy.StrategyT1;
@@ -8,7 +9,6 @@ import com.tone.gf.strategy.model.ModelT0;
 import com.tone.gf.strategy.model.ModelT1;
 import com.tone.gf.strategy.ui.UIT0;
 import com.tone.gf.strategy.ui.UIT1;
-import com.tone.gf.work.LoginWork;
 import com.tone.gf.work.PriceWork;
 
 import javax.swing.*;
@@ -25,6 +25,7 @@ public class AddPanel extends JPanel {
     private final JComboBox<Strategy> cbxStrategy;
     private UIT0 uit0;
     private UIT1 uit1;
+    private Executor executor = Executors.newSingleThreadExecutor();
 
     public AddPanel() {
         super();
@@ -74,27 +75,32 @@ public class AddPanel extends JPanel {
         btnAdd = new JButton("添加");
         btnAdd.setEnabled(false);
         btnAdd.addActionListener(e -> {
-            Model model = null;
-            switch ((Strategy)cbxStrategy.getSelectedItem()) {
-                case T0:
-                    model = uit0.getModel();
-                    break;
-                case T1:
-                    model = uit1.getModel();
-                    break;
+            // 检测是否在自选股范围内
+            String code = txtCode.getText();
+            if (AppInfo.STOCK_DOCUMENT.get(code) != null) {
+                Model model = null;
+                switch ((Strategy) cbxStrategy.getSelectedItem()) {
+                    case T0:
+                        model = uit0.getModel();
+                        break;
+                    case T1:
+                        model = uit1.getModel();
+                        break;
+                }
+                model.setCode(code);
+                modelTable.addModel(model);
+            } else {
+                JOptionPane.showMessageDialog(this, "您添加的股票代码未在自选股范围内。请先添加自选股，然后再添加相应的股票策略");
             }
-            model.setCode(txtCode.getText());
-            modelTable.addModel(model);
         });
         this.add(btnAdd, BorderLayout.LINE_END);
 
         JButton btnTest = new JButton("测试");
         btnTest.addActionListener(e -> {
-//            String code = txtCode.getText();
-//            double price = uit1.getModel().getPrice();
-//            AppInfo.PRICES.put(code, price);
-//            AppInfo.CLOSE_PRICES.put(code, price);
-            new LoginWork().run();
+            String code = txtCode.getText();
+            double price = uit1.getModel().getPrice();
+            AppInfo.PRICES.put(code, price);
+            AppInfo.CLOSE_PRICES.put(code, price);
         });
         this.add(btnTest, BorderLayout.LINE_END);
 
@@ -106,7 +112,7 @@ public class AddPanel extends JPanel {
             btnStart.setEnabled(false);
             btnStop.setEnabled(true);
             AppInfo.START = true;
-//            new Thread(new PriceWork()).start();
+            executor.execute(new PriceWork());
             modelTable.getModels().forEach(model -> {
                 switch (model.getStrategy()) {
                     case T0:
@@ -124,6 +130,8 @@ public class AddPanel extends JPanel {
             btnStart.setEnabled(true);
             AppInfo.START = false;
             btnAdd.setEnabled(true);
+            executor.execute(AppInfo.ADD_CHECK);
+
         });
         this.add(btnStart, BorderLayout.LINE_END);
         this.add(btnStop, BorderLayout.LINE_END);

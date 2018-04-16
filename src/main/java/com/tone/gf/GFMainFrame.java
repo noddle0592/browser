@@ -8,6 +8,8 @@ import com.teamdev.jxbrowser.chromium.swing.BrowserView;
 import com.teamdev.jxbrowser.chromium.az;
 import com.tone.gf.event.EventConsume;
 import com.tone.gf.util.PropertyUtil;
+import com.tone.gf.util.SleepUtil;
+import com.tone.gf.work.StartWork;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,9 +17,6 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.math.BigInteger;
 
-/**
- * Demonstrates how to get list of existing attributes of a specified HTML element.
- */
 public class GFMainFrame {
 
     static {
@@ -57,23 +56,13 @@ public class GFMainFrame {
             public void onFinishLoadingFrame(FinishLoadingEvent event) {
             if (event.isMainFrame()) {
                 DOMDocument document = event.getBrowser().getDocument();
-                AppInfo.DOCUMENT = document;
                 settingPanel.setButtonEnable();
-
-//                DOMElement link = DOCUMENT.findElement(By.id("link"));
-//                if (link != null) {
-//                    Map<String, String> attributes = link.getAttributes();
-//                    for (String attrName : attributes.keySet()) {
-//                        System.out.println(attrName + " = " + attributes.get(attrName));
-//                    }
-//                }
+                new Thread(new StartWork()).start();
             }
             }
         });
         browser.loadURL("http://hippo.gf.com.cn");
         AppInfo.BROWSER = browser;
         new EventConsume();
-
-        System.out.println(PropertyUtil.getProperty("user") + ", " + PropertyUtil.getProperty("password"));
     }
 }

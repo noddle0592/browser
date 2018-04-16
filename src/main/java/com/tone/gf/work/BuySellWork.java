@@ -18,7 +18,7 @@ public abstract class BuySellWork implements Runnable {
 
     @Override
     public void run() {
-        DOMElement domElement = AppInfo.DOCUMENT.findElement(By.className("AppBar-StockTrade"));
+        DOMElement domElement = AppInfo.BROWSER.getDocument().findElement(By.className("AppBar-StockTrade"));
         domElement.click();
         DOMElement domElementBuySell = this.getBuyOrSellElement();
         // 代码
