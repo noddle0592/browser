@@ -18,7 +18,7 @@ public class EventConsume {
         eventContext.addListener(new AbstractSmartListener<BuyEvent>(EventTypes.BUY) {
             @Override
             public void onEvent(BuyEvent event) throws Exception {
-                new BuyLogWork(event.getSource()).run();
+                new BuyWork(event.getSource()).run();
                 rightCornerPopMessage.showPopMessage("委托买入", String.format(PopMessages.BUY_SELL, "买入",
                         event.getSource().getPrice(), event.getSource().getCode(), event.getSource().getAmount()));
             }

@@ -1,6 +1,7 @@
 package com.tone.gf.work;
 
 import com.teamdev.jxbrowser.chromium.dom.By;
+import com.teamdev.jxbrowser.chromium.dom.DOMDocument;
 import com.teamdev.jxbrowser.chromium.dom.DOMElement;
 import com.tone.gf.AppInfo;
 
@@ -11,14 +12,18 @@ import java.util.stream.Collectors;
  * 获取每个股对应的页面对象线程
  */
 public class StockWork implements Runnable {
+    private DOMDocument rootDocument;
     private DOMElement domElementDetail;
     private int stockSize;
 
     @Override
     public void run() {
-        DOMElement domElement = AppInfo.BROWSER.getDocument().findElement(By.className("AppBar-MyStock"));
-        domElement.click();
-        DOMElement domElementGrid = AppInfo.BROWSER.getDocument().findElement(By.className("StockList StockGrid ScrollbarOuter"));
+        if (rootDocument == null) {
+            DOMElement domElement = AppInfo.BROWSER.getDocument().findElement(By.className("AppBar-MyStock"));
+            domElement.click();
+            rootDocument = AppInfo.BROWSER.getDocument();
+        }
+        DOMElement domElementGrid = rootDocument.findElement(By.className("StockList StockGrid ScrollbarOuter"));
         DOMElement domElementData = domElementGrid.findElement(By.className("TbodyInner"));
 //        DOMElement domElementBrief = domElementData.findElement(By.className("brief"));
 //        List<DOMElement> briefs = domElementBrief.findElements(By.tagName("tr"));

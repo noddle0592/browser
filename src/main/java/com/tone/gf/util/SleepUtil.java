@@ -15,4 +15,16 @@ public class SleepUtil {
             // don't care
         }
     }
+
+    public static void shortSleep() {
+        shortSleep(1);
+    }
+
+    public static void shortSleep(int count) {
+        try {
+            Thread.sleep(AppInfo.SLEEP_TIME * count);
+        } catch (InterruptedException e) {
+            // don't care
+        }
+    }
 }

@@ -26,6 +26,10 @@ public class AppInfo {
      */
     public static long SLEEP_TIME = 1000;
     /**
+     * 短睡眠时间
+     */
+    public static long SHORT_SLEEP_TIME = 200;
+    /**
      * 浏览器
      */
     public static Browser BROWSER;

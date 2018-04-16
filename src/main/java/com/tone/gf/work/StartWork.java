@@ -23,16 +23,18 @@ public class StartWork implements Runnable {
             SleepUtil.sleep();
         }
         SleepUtil.sleep();
+        // 登录
+        new LoginWork().run();
+        SleepUtil.sleep();
+        // 获取持仓情况
+        new PositionWork().run();
+        SleepUtil.sleep();
         // 获取 AppInfo.STOCK_DOCUMENT 对象
         StockWork stockWork = new StockWork();
         stockWork.run();
         // 获取昨收价格
         ClosePriceWork closePriceWork = new ClosePriceWork();
         closePriceWork.run();
-        // 登录
-        new LoginWork().run();
-        // 获取持仓情况
-        new PositionWork().run();
         // 检测自选
         AddCheckWork addCheckWork = new AddCheckWork(stockWork, closePriceWork);
         addCheckWork.run();

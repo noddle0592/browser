@@ -38,9 +38,9 @@
 	<appender name="info"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<filter class="ch.qos.logback.classic.filter.LevelFilter">
-			<level>ALL</level>
+			<level>INFO</level>
 			<onMatch>ACCEPT</onMatch>
-			<onMismatch>ACCEPT</onMismatch>
+			<onMismatch>DENY</onMismatch>
 		</filter>
 		<file>${log_dir}info.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -67,7 +67,7 @@
 		</rollingPolicy>
 		<encoder>
 			<pattern>${log_pattern}</pattern>
-			<immediateFlush>false</immediateFlush>
+			<immediateFlush>true</immediateFlush>
 		</encoder>
 	</appender> -->
 
@@ -87,8 +87,7 @@
 		</encoder>
 	</appender> -->
 
-	<logger name="com.tone.gf.work" level="info"
-			additivity="false">
+	<logger name="com.tone.gf.work" level="info" additivity="false">
 		<appender-ref ref="info" />
 		<appender-ref ref="STDOUT" />
 	</logger>
