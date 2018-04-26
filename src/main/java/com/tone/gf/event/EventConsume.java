@@ -19,6 +19,7 @@ public class EventConsume {
             @Override
             public void onEvent(BuyEvent event) throws Exception {
                 new BuyWork(event.getSource()).run();
+                new BuyLogWork(event.getSource()).run();
                 rightCornerPopMessage.showPopMessage("委托买入", String.format(PopMessages.BUY_SELL, "买入",
                         event.getSource().getPrice(), event.getSource().getCode(), event.getSource().getAmount()));
             }
@@ -26,6 +27,7 @@ public class EventConsume {
         eventContext.addListener(new AbstractSmartListener<SellEvent>(EventTypes.SELL) {
             @Override
             public void onEvent(SellEvent event) throws Exception {
+                new SellWork(event.getSource()).run();
                 new SellLogWork(event.getSource()).run();
                 rightCornerPopMessage.showPopMessage("委托卖出", String.format(PopMessages.BUY_SELL, "卖出",
                         event.getSource().getPrice(), event.getSource().getCode(), event.getSource().getAmount()));
@@ -48,6 +50,12 @@ public class EventConsume {
                 int diff = event.getSource().getNewPosition() - event.getSource().getPosition();
                 rightCornerPopMessage.showPopMessage("总持仓", String.format(PopMessages.POSITION, "总",
                         diff > 0 ? "red" : "green", diff > 0 ? "增加" : "减少", Math.abs(diff)));
+            }
+        });
+        eventContext.addListener(new AbstractSmartListener<OrderCancelEvent>(EventTypes.ORDER_CANCEL) {
+            @Override
+            public void onEvent(OrderCancelEvent event) throws Exception {
+                new OrderCancelWork(event.getSource().getCode(), event.getSource().getPrice()).run();
             }
         });
     }

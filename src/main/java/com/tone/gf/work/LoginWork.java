@@ -5,8 +5,11 @@ import com.teamdev.jxbrowser.chromium.dom.DOMElement;
 import com.teamdev.jxbrowser.chromium.dom.DOMFormControlElement;
 import com.teamdev.jxbrowser.chromium.dom.DOMNode;
 import com.tone.gf.AppInfo;
+import com.tone.gf.util.KeyUtil;
 import com.tone.gf.util.PropertyUtil;
+import com.tone.gf.util.SleepUtil;
 
+import java.awt.*;
 import java.util.List;
 
 public class LoginWork implements Runnable {
@@ -20,11 +23,20 @@ public class LoginWork implements Runnable {
         if (domElementUserAccount == null) {
             // 未登录，需要登录
             domElementLogin.findElement(By.className("login")).click();
+            SleepUtil.shortSleep();
             // 交易登录，广发通登录为login-btn GF
             AppInfo.BROWSER.getDocument().findElement(By.className("account-layer")).findElement(By.className("login-btn Trade")).click();
             DOMElement domElementLoginForm = AppInfo.BROWSER.getDocument().findElement(By.className("Popup  LoginPopup TradeLoginPopup")).findElement(By.className("LoginForm"));
             DOMFormControlElement domElementUser = (DOMFormControlElement)domElementLoginForm.findElement(By.className("useridInput"));
-            domElementUser.setValue(PropertyUtil.getProperty("user"));
+            if (domElementUser.getValue().isEmpty()) {
+                KeyUtil.inputStringToDom(domElementUser, PropertyUtil.getProperty("user"), true);
+                // 记住账号
+                DOMElement domElementRemeber = domElementLoginForm.findElement(By.className("rememberpwdcheckbox"));
+                if (domElementRemeber.getAttribute("checked") != null) {
+                    domElementRemeber.click();
+//                    domElementRemeber.setAttribute("checked", "checked");
+                }
+            }
             DOMFormControlElement domElementPassword = (DOMFormControlElement)domElementLoginForm.findElement(By.name("password"));
             domElementPassword.setValue(PropertyUtil.getProperty("password"));
             // 选4小时的持续时间

@@ -3,8 +3,10 @@ package com.tone.gf.strategy;
 import com.tone.gf.AppInfo;
 import com.tone.gf.event.BuyEvent;
 import com.tone.gf.event.EventContext;
+import com.tone.gf.event.OrderCancelEvent;
 import com.tone.gf.event.SellEvent;
 import com.tone.gf.event.model.BuySellModel;
+import com.tone.gf.event.model.OrderCancelModel;
 import com.tone.gf.strategy.model.ModelT1;
 
 import java.util.ArrayList;
@@ -74,6 +76,11 @@ public class StrategyT1 implements Runnable {
                         // 当前已经买入，删除当前买入
                         if (!buy.remove(gradient)) {
                             count--;
+                        }
+                        // 取消上一阶梯卖出价
+                        double upSell = ArithUtil.add(gradient, 2 * model.getFloatPrice());
+                        if (sell.remove(upSell)) {
+                            EventContext.getInstance().publishEvent(new OrderCancelEvent(new OrderCancelModel(model.getCode(), upSell)));
                         }
                     } else {
                         // 是否需要阶梯买入

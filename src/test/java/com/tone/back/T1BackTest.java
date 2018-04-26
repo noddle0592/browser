@@ -18,9 +18,9 @@ import java.io.Reader;
  * 注意：1. 测试时，关闭T1策略的while START判断，以及sleep设置
  */
 public class T1BackTest {
-//    private final String code = "000776";
+    private final String code = "000776";
 //    private final String code = "600297";
-    private final String code = "002590";
+//    private final String code = "002590";
     private final double floatPrice = 0.1;
     private final int amount = 10;
     private BackConsume backConsume;

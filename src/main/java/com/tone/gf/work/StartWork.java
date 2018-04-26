@@ -3,6 +3,9 @@ package com.tone.gf.work;
 import com.teamdev.jxbrowser.chromium.dom.By;
 import com.teamdev.jxbrowser.chromium.dom.DOMElement;
 import com.tone.gf.AppInfo;
+import com.tone.gf.event.EventContext;
+import com.tone.gf.event.SellEvent;
+import com.tone.gf.event.model.BuySellModel;
 import com.tone.gf.util.SleepUtil;
 
 /**
@@ -27,7 +30,7 @@ public class StartWork implements Runnable {
         new LoginWork().run();
         SleepUtil.sleep();
         // 获取持仓情况
-        new PositionWork().run();
+       /* new PositionWork().run();
         SleepUtil.sleep();
         // 获取 AppInfo.STOCK_DOCUMENT 对象
         StockWork stockWork = new StockWork();
@@ -38,6 +41,7 @@ public class StartWork implements Runnable {
         // 检测自选
         AddCheckWork addCheckWork = new AddCheckWork(stockWork, closePriceWork);
         addCheckWork.run();
-        AppInfo.ADD_CHECK = addCheckWork;
+        AppInfo.ADD_CHECK = addCheckWork;*/
+        EventContext.getInstance().publishEvent(new SellEvent(new BuySellModel("002281", 29.10, 200)));
     }
 }

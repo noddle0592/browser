@@ -50,8 +50,7 @@ public class KeyUtil {
 //    }
 
     private static void forwardMousePressEvent(BrowserMouseEvent.MouseButtonType buttonType,
-                                               int x,
-                                               int y) {
+                                               int x, int y) {
         BrowserMouseEvent.BrowserMouseEventBuilder builder = new BrowserMouseEvent.BrowserMouseEventBuilder();
         builder.setEventType(BrowserMouseEvent.MouseEventType.MOUSE_PRESSED)
                 .setButtonType(buttonType)
@@ -65,8 +64,7 @@ public class KeyUtil {
     }
 
     private static void forwardMouseReleaseEvent(BrowserMouseEvent.MouseButtonType buttonType,
-                                                 int x,
-                                                 int y) {
+                                                 int x, int y) {
         BrowserMouseEvent.BrowserMouseEventBuilder builder = new BrowserMouseEvent.BrowserMouseEventBuilder();
         builder.setEventType(MOUSE_RELEASED)
                 .setButtonType(buttonType)
@@ -80,8 +78,7 @@ public class KeyUtil {
     }
 
     private static void forwardMouseClickEvent(BrowserMouseEvent.MouseButtonType buttonType,
-                                               int x,
-                                               int y) {
+                                               int x, int y) {
         forwardMousePressEvent(buttonType, x, y);
         forwardMouseReleaseEvent(buttonType, x, y);
     }
@@ -92,9 +89,28 @@ public class KeyUtil {
      * @param key 需要键入的内容
      */
     public static void inputStringToDom(DOMElement domElement, String key) {
-        // focus
         Rectangle rectangle = domElement.getBoundingClientRect();
+        inputStringToDom(rectangle, key);
+    }
+
+    /**
+     * 模拟按按键
+     * @param domElement 需要按按键的对象
+     * @param key 需要键入的内容
+     * @param adjust 是否修正坐标位置，默认不修正
+     */
+    public static void inputStringToDom(DOMElement domElement, String key, boolean adjust) {
+        Rectangle rectangle = domElement.getBoundingClientRect();
+        if (adjust) {
+            rectangle.setLocation((int) (rectangle.getX() + rectangle.getWidth() / 2), (int) (rectangle.getY() + rectangle.getHeight() / 2));
+        }
+        inputStringToDom(rectangle, key);
+    }
+
+    private static void inputStringToDom(Rectangle rectangle, String key) {
+        // focus
         forwardMouseClickEvent(BrowserMouseEvent.MouseButtonType.PRIMARY, (int)rectangle.getX(), (int)rectangle.getY());
+        SleepUtil.shortSleep();
         // press
         char[] cs = key.toUpperCase().toCharArray();
         for (char c : cs) {

@@ -20,4 +20,8 @@ public interface EventTypes {
      * 总持仓变动
      */
     EventType POSITION_CHANGE = new ByteEventType((byte)3);
+    /**
+     * 取消委托
+     */
+    EventType ORDER_CANCEL = new ByteEventType((byte)4);
 }
